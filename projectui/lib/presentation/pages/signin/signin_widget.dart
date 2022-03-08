@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projectui/dataprovider/userRegister.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -144,14 +145,16 @@ class _SignInState extends State<SignIn> {
                             padding:
                                 MaterialStateProperty.all(const EdgeInsets.all(20)),
                           ),
-                          onPressed: () {
+                          onPressed: () async{
                             // Validate returns true if the form is valid, or false otherwise.
                             if (_formKey.currentState!.validate()) {
                               // If the form is valid, display a snackbar. In the real world,
                               // you'd often call a server or save the information in a database.
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Processing Data')),
-                              );
+                              // ScaffoldMessenger.of(context).showSnackBar(
+                              //   const SnackBar(content: Text('Processing Data')),
+                              // );
+                              // final userOrError = await RegisterProvider.signUp(UserRegister: UserRe
+                              // );
                             }
                           },
                           child: const Text('Submit',style: TextStyle(color: Colors.black),),
