@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-v8l(nw#*y1$=3#n32^7tob561z3!zxls7y_td)q0yjmnc3qlpy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0','localhost','127.0.0.1','192.168.43.163','192.168.56.1','192.168.143.85']
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
@@ -54,8 +54,21 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'backend.urls'
+CORS_ALLOW_CREDENTIALS = True # to accept cookies via ajax request
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:8000',# the domain for front-end app(you can add more than 1) 
+]
 
+REST_FRAMEWORK  = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated', # make all endpoints private
+    )
+    }
+
+ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -104,7 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 

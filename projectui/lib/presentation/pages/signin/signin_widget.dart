@@ -1,5 +1,11 @@
+// ignore_for_file: unused_local_variable
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:projectui/dataprovider/userRegister.dart';
+import 'package:projectui/models/user_register.dart';
+import 'package:http/http.dart' as http;
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -7,9 +13,11 @@ class SignIn extends StatefulWidget {
   @override
   State<SignIn> createState() => _SignInState();
 }
-
+final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
+  
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -85,6 +93,7 @@ class _SignInState extends State<SignIn> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
                       child: TextFormField(
+                        controller: emailController,
                         style: const TextStyle(color: Colors.white),
                         decoration: const InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -112,6 +121,7 @@ class _SignInState extends State<SignIn> {
                      Padding(
                       padding: const EdgeInsets.fromLTRB(20, 10, 10, 20),
                       child: TextFormField(
+                        controller: passwordController,
                         style: const TextStyle(color: Colors.white),
                         obscureText: true,
                         decoration: const InputDecoration(
@@ -153,8 +163,11 @@ class _SignInState extends State<SignIn> {
                               // ScaffoldMessenger.of(context).showSnackBar(
                               //   const SnackBar(content: Text('Processing Data')),
                               // );
-                              // final userOrError = await RegisterProvider.signUp(UserRegister: UserRe
-                              // );
+                              var user = User(UserName: "Hanan", Email: emailController.text, FirstName: "FirstName", LastName: "LastName", Password: passwordController.text, ProfilePicture: "ProfilePicture");
+                             print(user.Password);
+                              RegisterProvider registerProvider = RegisterProvider(httpClient: http.Client());
+                              var ue = await RegisterProvider.registerUser(user: user);
+                              print(ue!.Email);
                             }
                           },
                           child: const Text('Submit',style: TextStyle(color: Colors.black),),
