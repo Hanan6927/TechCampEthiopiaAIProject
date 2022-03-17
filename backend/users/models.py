@@ -45,7 +45,7 @@ def upload_to(instance, filename):
 # Create your models here.
 class User(AbstractUser):
     email = email = models.EmailField(unique=True)
-    profile_pic = models.ImageField(upload_to=upload_to, default='media\default-user.png')
+    profile_pic = models.ImageField(upload_to=upload_to, default='media\default-user.png',blank=True, null=True)
     USERNAME_FIELD = 'email'
     EMAIL_FIELD  = 'email'
     objects = CustomUserManager()

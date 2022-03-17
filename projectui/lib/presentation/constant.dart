@@ -1,0 +1,3 @@
+const String homeRoute = '/';
+const String signinRoute = '/';
+const String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3MiOiJhY2Nlc3MiLCJleHAiOjE2NDc0OTkyMzQsImlhdCI6MTY0NzA2NzIzNCwianRpIjoiOGEwMmI0MjNiNGM0NGM3M2FkODdlZTM1Y2I4NjkzMTAiLCJ1c2VyX2lkIjoyLCJUT0tFTl9UWVBFX0NMQUlNIjoiYWNjZXNzIn0.gi3mHWNenTJpKG_ZJ3orhmpaVkHX1QUhhV_UaMImKG0";

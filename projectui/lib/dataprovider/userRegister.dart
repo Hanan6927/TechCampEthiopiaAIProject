@@ -5,13 +5,15 @@ import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:projectui/models/user_register.dart';
 
-const rootUrl = 'http://192.168.143.85:8000/api/v1/user/register/';
+import '../models/user.dart';
+
+const rootUrl = 'https://e593-197-156-103-229.ngrok.io/api/v1/user/register/';
 Uri addUser = Uri.parse(rootUrl);
 class RegisterProvider{
   final http.Client httpClient;
   RegisterProvider({required this.httpClient});
   // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
-  static Future<User?> registerUser({User? user}) async {
+  static Future<User?> registerUser({UserRegister? user}) async {
     final response = await http.post(addUser,
         headers: {
           'Content-Type': 'application/json',
@@ -25,10 +27,11 @@ class RegisterProvider{
           'password': user.Password,
           'profile_pic': user.ProfilePicture,
         }));
-    print(response.body);
+        final parsed = json.decode(response.body);
+    print(parsed["data"]);
     print(response.statusCode);
-    if (response.statusCode == 201) {
-      return User.fromJson(jsonDecode(response.body));
+    if (response.statusCode == 200) {
+      return User.fromJson(parsed["data"]);
     } else {
       return null;
     }
